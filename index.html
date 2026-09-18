@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#171411" />
+    <meta name="description" content="Roma Aeterna: storia, archeologia ed epigrafia latina dalla fondazione all'Impero." />
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+    <title>Roma Aeterna</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Vai al contenuto</a>
+    <header class="site-header" id="site-header">
+      <a class="brand" href="#/" aria-label="Roma Aeterna, home">
+        <span class="brand-mark" aria-hidden="true">RA</span>
+        <span class="brand-copy"><strong>ROMA AETERNA</strong><small>Archivio di civiltà romana</small></span>
+      </a>
+      <nav class="desktop-nav" aria-label="Navigazione principale">
+        <a href="#/" data-route="home">Storia</a>
+        <a href="#/biblioteca" data-route="biblioteca">Biblioteca</a>
+        <a href="#/corpus" data-route="corpus">Corpus</a>
+        <a href="#/contributi" data-route="contributi">Contributi</a>
+      </nav>
+      <div class="header-actions">
+        <button class="search-button" id="open-search" type="button" aria-label="Apri ricerca" title="Cerca nel portale">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.5-3.5"></path></svg>
+        </button>
+        <button class="menu-button" id="menu-button" type="button" aria-expanded="false" aria-controls="mobile-nav">
+          <span></span><span></span><span></span><span class="sr-only">Menu</span>
+        </button>
+      </div>
+      <nav class="mobile-nav" id="mobile-nav" aria-label="Navigazione mobile">
+        <a href="#/">Storia</a><a href="#/biblioteca">Biblioteca</a><a href="#/contributi">Contributi</a>
+      </nav>
+    </header>
+
+    <main id="main-content" tabindex="-1"></main>
+
+    <footer class="site-footer">
+      <div class="footer-main">
+        <div>
+          <a class="brand footer-brand" href="#/"><span class="brand-mark">RA</span><span class="brand-copy"><strong>ROMA AETERNA</strong><small>Archivio di civiltà romana</small></span></a>
+          <p>Un portale indipendente per avvicinare il pubblico alla storia, all'archeologia e all'epigrafia del mondo romano.</p>
+        </div>
+        <div><h3>Esplora</h3><a href="#/">Percorso storico</a><a href="#/biblioteca">Biblioteca scientifica</a><a href="#/contributi">Archivio partecipato</a></div>
+        <div><h3>Progetto</h3><a href="#/biblioteca">Criteri editoriali</a><a href="#/contributi">Linee guida media</a></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 Roma Aeterna</span><span>Historia magistra vitae</span></div>
+    </footer>
+
+    <dialog class="search-dialog" id="search-dialog">
+      <form method="dialog" class="search-shell">
+        <div class="search-top"><span>RICERCA NELL'ARCHIVIO</span><button value="cancel" aria-label="Chiudi ricerca">×</button></div>
+        <label for="global-search">Cosa desideri approfondire?</label>
+        <input id="global-search" type="search" placeholder="Es. Foro Romano, Augusto, CIL VI…" autocomplete="off" />
+        <div class="search-suggestions" id="search-suggestions"></div>
+      </form>
+    </dialog>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
