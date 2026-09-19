@@ -70,7 +70,9 @@ export async function loadCorpus(base='./content/v1.1',fetcher=fetch,parse=brows
   if(JSON.stringify(manifest.documents.map(d=>d.id))!==JSON.stringify(ids))throw Error('Inventario documenti non valido');
   const digest=async b=>[...new Uint8Array(await crypto.subtle.digest('SHA-256',b))].map(x=>x.toString(16).padStart(2,'0')).join('').toUpperCase();
   return Promise.all(manifest.documents.map(async d=>{const rb=await get(`${base}/raw/${d.id}.json`),ab=await get(`${base}/apparatus/${d.id}.json`);
-    if(await digest(rb)!==d.rawSha256||await digest(ab)!==d.apparatusSha256)throw Error('Hash del bundle non conforme');
+    const rawDigest=await digest(rb),apparatusDigest=await digest(ab);
+    if(rawDigest!==d.rawSha256)throw Error(`Hash del bundle non conforme: ${d.id}/raw`);
+    if(apparatusDigest!==d.apparatusSha256)throw Error(`Hash del bundle non conforme: ${d.id}/apparatus`);
     const raw=JSON.parse(text(rb)),app=JSON.parse(text(ab));if(app.sourceSha256!==d.sourceSha256)throw Error('Provenienza non conforme');
     for(const p of app.packageParts){const bytes=Uint8Array.from(atob(p.base64),c=>c.charCodeAt(0));if(bytes.length!==p.bytes||await digest(bytes)!==p.sha256)throw Error('Parte corrotta');}
     return {raw,document:decodeDocument(raw,app,parse)};

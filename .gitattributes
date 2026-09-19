@@ -1,0 +1,2 @@
+# Canonical bundle hashes cover the exact bytes. Never normalize line endings.
+content/v1.1/**/*.json -text
